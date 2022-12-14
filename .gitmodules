@@ -4,3 +4,9 @@
 	branch = v1.1.1
 [submodule "lib/solmate"]
 	path = lib/solmate
+[submodule "lib/VRGDAs"]
+	path = lib/VRGDAs
+[submodule "lib/openzeppelin-contracts"]
+	path = lib/openzeppelin-contracts
+[submodule "lib/goo-issuance"]
+	path = lib/goo-issuance
