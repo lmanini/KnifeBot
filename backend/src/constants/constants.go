@@ -1,7 +1,9 @@
 package constants
 
 const (
-	KnifeGameDeployedAtBlock = 16176676
+	SpyNFTGenesisBlock = 16176675
+	KnifeNFTGenesisBlock 
+	KnifeGameGenesisBlock = 16176676
 
 	KnifeGame = "0xc399A26Ce12EaADB48c2b8175fdEfCc2A452Da9F"
 	KnifeNFT  = "0x88BD205658Ea66E4c96ee61686439E160C4a9166"

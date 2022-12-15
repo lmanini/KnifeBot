@@ -33,6 +33,9 @@ func MooBalanceComm(target *common.Address) (*big.Int, error) {
 }
 
 // sybil cluster getters
+func ViewSybilClusterComm(source *common.Address) ([]common.Address, error) {
+	return getSybilCluster(source)
+}
 
 // total spies
 
@@ -70,4 +73,57 @@ func getMooBal(target *common.Address) (*big.Int, error) {
 		return big.NewInt(0), err
 	}
 	return bal, nil
+}
+
+func getSybilCluster(source *common.Address) ([]common.Address, error) {
+	client, _ := ethclient.Dial(constants.RPC)
+	spyFilterer, err := bindings.NewSpyNFTFilterer(common.HexToAddress(constants.SpyNFT), client)
+	if err != nil {
+		return nil, err
+	}
+	return getSybilClusterBody(source, spyFilterer, make(map[common.Address]bool))
+}
+
+func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFilterer, cluster map[common.Address]bool) ([]common.Address, error) {
+	toItr, _ := spyFilterer.FilterTransfer(
+		&bind.FilterOpts{
+			Start: constants.SpyNFTGenesisBlock,
+			End: nil,
+		},
+		[]common.Address{*source},
+		nil,
+		nil,
+	)
+	fromItr, _ := spyFilterer.FilterTransfer(
+		&bind.FilterOpts{
+			Start: constants.SpyNFTGenesisBlock,
+			End: nil,
+		},
+		nil,
+		[]common.Address{*source},
+		nil,
+	)
+	dirty := false
+	for toItr.Next() {
+		if !cluster[toItr.Event.To] {
+			cluster[toItr.Event.To] = true
+			dirty = true
+		}
+	}
+	for fromItr.Next() {
+		if !cluster[fromItr.Event.From] {
+			cluster[fromItr.Event.From] = true
+			dirty = true
+		}
+	}
+	if dirty {
+		getSybilClusterBody(source, spyFilterer, cluster)
+	}
+	
+	keys := make([]common.Address, 0, len(cluster))
+	for a := range cluster {
+		keys = append(keys, a)
+	}
+	return keys, nil
+	
 }
