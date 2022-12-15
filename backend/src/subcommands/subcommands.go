@@ -16,12 +16,12 @@ const (
 	SpyTopBalance
 )
 
-func SpyBalanceComm(target *common.Address) uint64 {
+func SpyBalanceComm(target *common.Address) (uint64, error) {
 	client, _ := ethclient.Dial(constants.RPC)
 	caller, err := bindings.NewSpyNFTCaller(common.HexToAddress(constants.SpyNFT),client)
 	bal, err := caller.BalanceOf(&bind.CallOpts{}, *target)
 	if err != nil {
-		panic(err)
+		return 0, err
 	}
-	return bal.Uint64()
+	return bal.Uint64(), nil
 }

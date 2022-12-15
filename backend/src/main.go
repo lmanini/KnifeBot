@@ -26,7 +26,7 @@ func main() {
 				Name: "spy-balance",
 				Aliases: []string{"sb"},
 				Action: func(ctx *cli.Context) error {
-					subcommand(subcommands.SpyBalance, common.HexToAddress(ctx.Args().Get(0)))
+					exec(subcommands.SpyBalance, common.HexToAddress(ctx.Args().Get(0)))
 					return nil
 				},
 			},
@@ -42,9 +42,15 @@ func run() error {
 	return nil
 }
 
-func subcommand(command subcommands.Command, addr common.Address) {
+func exec(command subcommands.Command, v ...interface{}) error {
 	switch command {
 	case subcommands.SpyBalance:
-		log.Printf("Address %s has Spy balance : %d", addr.Hex(), subcommands.SpyBalanceComm(&addr))
+		addr := v[0].(common.Address)
+		bal, err := subcommands.SpyBalanceComm(&addr)
+		if err != nil {
+			return err
+		}
+		log.Printf("Address %s has Spy balance : %d", addr.Hex(), bal)
 	}
+	return nil
 }
