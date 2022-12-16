@@ -21,6 +21,7 @@ const (
 	MooBalance
 	ViewSybilCluster
 	SpyPrice
+	KnifePrice
 )
 
 /** COMMANDS */
@@ -48,6 +49,10 @@ func ViewSybilClusterComm(source *common.Address) ([]common.Address, error) {
 
 func ViewSpyPriceComm() (*big.Int, error) {
 	return getSpyPrice()
+}
+
+func ViewKnifePriceComm() (*big.Int, error) {
+	return getKnifePrice()
 }
 
 /** BODIES */
@@ -95,6 +100,16 @@ func getSpyPrice() (*big.Int, error) {
 	client, _ := ethclient.Dial(constants.RPC)	
 	caller, _ := bindings.NewKnifeGameCaller(common.HexToAddress(constants.KnifeGame), client)
 	price, err := caller.SpyPrice(&bind.CallOpts{})
+	if err != nil {
+		return nil, err
+	}
+	return price, nil
+}
+
+func getKnifePrice() (*big.Int, error) {
+	client, _ := ethclient.Dial(constants.RPC)	
+	caller, _ := bindings.NewKnifeGameCaller(common.HexToAddress(constants.KnifeGame), client)
+	price, err := caller.KnifePrice(&bind.CallOpts{})
 	if err != nil {
 		return nil, err
 	}

@@ -27,23 +27,18 @@ contract DeployAndTransferScript is Script {
         spy.sudoTransferFrom(deployerAddr, peer2, id2);
         spy.sudoTransferFrom(deployerAddr, peer3, id3);
 
-        spy.sudoTransferFrom(peer1, peer2, id1);
-
         /**
         
         deployerAddr -- id1 --> peer1
         deployerAddr -- id2 --> peer2
         deployerAddr -- id3 --> peer3
-        
-        peer1 -- id2 --> peer2
-
+    
         deployerAddr : {}
-        peer1: {}
-        peer2: {id1, id2}
+        peer1: {id1}
+        peer2: {id2}
         peer3: {id3}
          
          */
-
         vm.stopBroadcast();
     }
 }

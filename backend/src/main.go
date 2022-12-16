@@ -63,6 +63,13 @@ func main() {
 				Action: func(ctx *cli.Context) error {
 					return exec(subcommands.SpyPrice)
 				},
+			},
+			{
+				Name: "knife-price",
+				Aliases: []string{"kp"},
+				Action: func(ctx *cli.Context) error {
+					return exec(subcommands.KnifePrice)
+				},
 			}, {
 				Name: "spy-balance-top",
 				Aliases: []string{"sbt"},
@@ -132,6 +139,14 @@ func exec(command subcommands.Command, v ...interface{}) error {
 		fPrice := new(big.Float)
 		fPrice.SetString(price.String())
 		log.Printf("Spy price is currently at %s", new(big.Float).Quo(fPrice, big.NewFloat(math.Pow10(18))).String())
+	case subcommands.KnifePrice:
+		price, err := subcommands.ViewKnifePriceComm()
+		if err != nil {
+			return err
+		}
+		fPrice := new(big.Float)
+		fPrice.SetString(price.String())
+		log.Printf("Knife price is currently at %s", new(big.Float).Quo(fPrice, big.NewFloat(math.Pow10(18))).String())
 	case subcommands.SpyTopBalance:
 		top, topBal, err := subcommands.SpyTopBalanceComm(v[0].(int))
 		if err != nil {
