@@ -18,6 +18,7 @@ const (
 	KnifeBalance
 	KnifeTopBalance
 	MooBalance
+	ViewSybilCluster
 )
 
 func SpyBalanceComm(target *common.Address) (uint64, error) {
@@ -104,20 +105,25 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 		nil,
 	)
 	dirty := false
+	sources := []common.Address{}
 	for toItr.Next() {
 		if !cluster[toItr.Event.To] {
 			cluster[toItr.Event.To] = true
 			dirty = true
+			sources = append(sources, toItr.Event.To)
 		}
 	}
 	for fromItr.Next() {
 		if !cluster[fromItr.Event.From] {
 			cluster[fromItr.Event.From] = true
 			dirty = true
+			sources = append(sources, fromItr.Event.From)
 		}
 	}
 	if dirty {
-		getSybilClusterBody(source, spyFilterer, cluster)
+		for _, s := range sources {
+			getSybilClusterBody(&s, spyFilterer, cluster)
+		}
 	}
 	
 	keys := make([]common.Address, 0, len(cluster))
@@ -125,5 +131,4 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 		keys = append(keys, a)
 	}
 	return keys, nil
-	
 }
