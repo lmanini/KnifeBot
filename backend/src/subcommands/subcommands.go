@@ -4,6 +4,7 @@ import (
 	"KnifeBot/src/bindings"
 	"KnifeBot/src/constants"
 	"math/big"
+	"sort"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -22,6 +23,8 @@ const (
 	SpyPrice
 )
 
+/** COMMANDS */
+
 func SpyBalanceComm(target *common.Address) (uint64, error) {
 	return getSpyBal(target)
 }
@@ -34,6 +37,10 @@ func MooBalanceComm(target *common.Address) (*big.Int, error) {
 	return getMooBal(target)
 }
 
+func SpyTopBalanceComm(limit int) ([]common.Address, []int, error) {
+	return topSpyBalance(limit)
+}
+
 // sybil cluster getters
 func ViewSybilClusterComm(source *common.Address) ([]common.Address, error) {
 	return getSybilCluster(source)
@@ -43,13 +50,7 @@ func ViewSpyPriceComm() (*big.Int, error) {
 	return getSpyPrice()
 }
 
-// total spies
-
-// total knives
-
-// total moo ? moo is non transferable tho
-// --> calculate total moo but keep track 
-// of each addr in the cluster's balance 
+/** BODIES */
 
 func getSpyBal(target *common.Address) (uint64, error) {
 	client, _ := ethclient.Dial(constants.RPC)
@@ -146,4 +147,37 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 		keys = append(keys, a)
 	}
 	return keys, nil
+}
+
+func topSpyBalance(limit int) ([]common.Address, []int, error) {
+	client, _ := ethclient.Dial(constants.RPC)
+	spyNFT, _ := bindings.NewSpyNFT(common.HexToAddress(constants.SpyNFT), client)
+	it, err := spyNFT.SpyNFTFilterer.FilterTransfer(
+		&bind.FilterOpts{
+			Start: constants.SpyNFTGenesisBlock,
+			End: nil,
+		},
+		[]common.Address{common.HexToAddress("0x0000000000000000000000000000000000000000")},
+		nil,
+		nil,
+	)
+	if err != nil {
+		return nil, nil, err
+	}
+	addresses := []common.Address{}
+	addrToBal := make(map[common.Address]uint64)
+	for it.Next() {
+		if _, ok := addrToBal[it.Event.To]; !ok {
+			addresses = append(addresses, it.Event.To)
+			spyBal, _ := getSpyBal(&(it.Event.To))
+			addrToBal[it.Event.To] += spyBal
+		}
+	}
+	sort.SliceStable(addresses, func(i, j int) bool {
+		return addrToBal[addresses[i]] > addrToBal[addresses[j]]
+	})
+
+	topBal := make([]int, limit)
+	for i, a := range addresses[:limit] {topBal[i] = int(addrToBal[a])}
+	return addresses[:limit], topBal, nil
 }

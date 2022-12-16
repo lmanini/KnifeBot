@@ -6,6 +6,7 @@ import (
 	"math"
 	"math/big"
 	"os"
+	"strconv"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
@@ -62,6 +63,16 @@ func main() {
 				Action: func(ctx *cli.Context) error {
 					return exec(subcommands.SpyPrice)
 				},
+			}, {
+				Name: "spy-balance-top",
+				Aliases: []string{"sbt"},
+				Action: func(ctx *cli.Context) error {
+					limit, err := strconv.Atoi(ctx.Args().Get(0))
+					if err != nil {
+						return err
+					}
+					return exec(subcommands.SpyTopBalance, limit)
+				},
 			},
 		},
 	}
@@ -71,7 +82,9 @@ func main() {
 }
 
 func run() error {
-	log.Println("GM")
+	
+	// bot auto logic
+
 	return nil
 }
 
@@ -119,7 +132,15 @@ func exec(command subcommands.Command, v ...interface{}) error {
 		fPrice := new(big.Float)
 		fPrice.SetString(price.String())
 		log.Printf("Spy price is currently at %s", new(big.Float).Quo(fPrice, big.NewFloat(math.Pow10(18))).String())
-	}
-	
+	case subcommands.SpyTopBalance:
+		top, topBal, err := subcommands.SpyTopBalanceComm(v[0].(int))
+		if err != nil {
+			return err
+		}
+		log.Printf("Spy leaderboard : \n")
+		for i, a := range top {
+			log.Printf("\t%d. : %s has %d spies", i + 1, a.Hex(), topBal[i])
+		}
+	}	
 	return nil
 }
