@@ -19,6 +19,7 @@ const (
 	KnifeTopBalance
 	MooBalance
 	ViewSybilCluster
+	SpyPrice
 )
 
 func SpyBalanceComm(target *common.Address) (uint64, error) {
@@ -36,6 +37,10 @@ func MooBalanceComm(target *common.Address) (*big.Int, error) {
 // sybil cluster getters
 func ViewSybilClusterComm(source *common.Address) ([]common.Address, error) {
 	return getSybilCluster(source)
+}
+
+func ViewSpyPriceComm() (*big.Int, error) {
+	return getSpyPrice()
 }
 
 // total spies
@@ -85,6 +90,16 @@ func getSybilCluster(source *common.Address) ([]common.Address, error) {
 	return getSybilClusterBody(source, spyFilterer, make(map[common.Address]bool))
 }
 
+func getSpyPrice() (*big.Int, error) {
+	client, _ := ethclient.Dial(constants.RPC)	
+	caller, _ := bindings.NewKnifeGameCaller(common.HexToAddress(constants.KnifeGame), client)
+	price, err := caller.SpyPrice(&bind.CallOpts{})
+	if err != nil {
+		return nil, err
+	}
+	return price, nil
+}
+
 func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFilterer, cluster map[common.Address]bool) ([]common.Address, error) {
 	toItr, _ := spyFilterer.FilterTransfer(
 		&bind.FilterOpts{
@@ -107,14 +122,14 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 	dirty := false
 	sources := []common.Address{}
 	for toItr.Next() {
-		if !cluster[toItr.Event.To] {
+		if fromItr.Event.To.String() != "0x0000000000000000000000000000000000000000" && !cluster[toItr.Event.To] {
 			cluster[toItr.Event.To] = true
 			dirty = true
 			sources = append(sources, toItr.Event.To)
 		}
 	}
 	for fromItr.Next() {
-		if !cluster[fromItr.Event.From] {
+		if fromItr.Event.From.String() != "0x0000000000000000000000000000000000000000" && !cluster[fromItr.Event.From] {
 			cluster[fromItr.Event.From] = true
 			dirty = true
 			sources = append(sources, fromItr.Event.From)
