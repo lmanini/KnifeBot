@@ -122,7 +122,7 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 	dirty := false
 	sources := []common.Address{}
 	for toItr.Next() {
-		if fromItr.Event.To.String() != "0x0000000000000000000000000000000000000000" && !cluster[toItr.Event.To] {
+		if toItr.Event.To.String() != "0x0000000000000000000000000000000000000000" && !cluster[toItr.Event.To] {
 			cluster[toItr.Event.To] = true
 			dirty = true
 			sources = append(sources, toItr.Event.To)

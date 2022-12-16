@@ -8,7 +8,7 @@ import (
 )
 
 func TestViewSybilClusterComm(t *testing.T) {
-	addr := common.HexToAddress("0x90F79bf6EB2c4f870365E785982E1f101E93b906")
+	addr := common.HexToAddress("0x9c9190635d46c36452da89c1603216e0377e0e57")
 	got, err := ViewSybilClusterComm(&addr)
 	if err != nil {
 		panic(err)
