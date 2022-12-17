@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/joho/godotenv"
 	"github.com/urfave/cli/v2"
 )
 
@@ -115,8 +116,16 @@ func main() {
 }
 
 func run() error {
+	err := godotenv.Load(".env")
+	if err != nil { return err }
 	
 	// bot auto logic
+	val, ok := os.LookupEnv("PK1")
+	if !ok {
+		log.Printf("Nope")
+	} else {
+		log.Printf("%s", val)
+	}
 
 	return nil
 }
