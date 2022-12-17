@@ -42,7 +42,10 @@ func SpyTopBalanceComm(limit int) ([]common.Address, []int, error) {
 	return topSpyBalance(limit)
 }
 
-// sybil cluster getters
+func KnifeTopBalanceComm(limit int) ([]common.Address, []int, error) {
+	return topKnifeBalance(limit)
+}
+
 func ViewSybilClusterComm(source *common.Address) ([]common.Address, error) {
 	return getSybilCluster(source)
 }
@@ -185,6 +188,39 @@ func topSpyBalance(limit int) ([]common.Address, []int, error) {
 		if _, ok := addrToBal[it.Event.To]; !ok {
 			addresses = append(addresses, it.Event.To)
 			spyBal, _ := getSpyBal(&(it.Event.To))
+			addrToBal[it.Event.To] += spyBal
+		}
+	}
+	sort.SliceStable(addresses, func(i, j int) bool {
+		return addrToBal[addresses[i]] > addrToBal[addresses[j]]
+	})
+
+	topBal := make([]int, limit)
+	for i, a := range addresses[:limit] {topBal[i] = int(addrToBal[a])}
+	return addresses[:limit], topBal, nil
+}
+
+func topKnifeBalance(limit int) ([]common.Address, []int, error) {
+	client, _ := ethclient.Dial(constants.RPC)
+	knifeNFT, _ := bindings.NewKnifeNFT(common.HexToAddress(constants.KnifeNFT), client)
+	it, err := knifeNFT.KnifeNFTFilterer.FilterTransfer(
+		&bind.FilterOpts{
+			Start: constants.KnifeNFTGenesisBlock,
+			End: nil,
+		},
+		[]common.Address{common.HexToAddress(constants.ZeroAddr)},
+		nil,
+		nil,
+	)
+	if err != nil {
+		return nil, nil, err
+	}
+	addresses := []common.Address{}
+	addrToBal := make(map[common.Address]uint64)
+	for it.Next() {
+		if _, ok := addrToBal[it.Event.To]; !ok {
+			addresses = append(addresses, it.Event.To)
+			spyBal, _ := getKnifeBal(&(it.Event.To))
 			addrToBal[it.Event.To] += spyBal
 		}
 	}

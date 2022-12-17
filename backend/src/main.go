@@ -156,6 +156,15 @@ func exec(command subcommands.Command, v ...interface{}) error {
 		for i, a := range top {
 			log.Printf("\t%d. : %s has %d spies", i + 1, a.Hex(), topBal[i])
 		}
+	case subcommands.KnifeTopBalance:
+		top, topBal, err := subcommands.KnifeTopBalanceComm(v[0].(int))
+		if err != nil {
+			return err
+		}
+		log.Printf("Knife leaderboard : \n")
+		for i, a := range top {
+			log.Printf("\t%d. : %s has %d knives", i + 1, a.Hex(), topBal[i])
+		}
 	}	
 	return nil
 }
