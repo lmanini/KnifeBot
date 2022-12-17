@@ -19,9 +19,11 @@ const (
 	KnifeBalance
 	KnifeTopBalance
 	MooBalance
-	ViewSybilCluster
+	MooTopBalance
 	SpyPrice
 	KnifePrice
+	ViewSybilCluster
+	ViewAllBalances
 )
 
 /** COMMANDS */
@@ -44,6 +46,14 @@ func SpyTopBalanceComm(limit int) ([]common.Address, []int, error) {
 
 func KnifeTopBalanceComm(limit int) ([]common.Address, []int, error) {
 	return topKnifeBalance(limit)
+}
+
+func MooTopBalanceComm(limit int) ([]common.Address, []*big.Int, error) {
+	return topMooBalance(limit)
+}
+
+func ViewAllBalancesComm(source *common.Address) (uint64, uint64, *big.Int, error) {
+	return getAllBalances(source)
 }
 
 func ViewSybilClusterComm(source *common.Address) ([]common.Address, error) {
@@ -220,8 +230,8 @@ func topKnifeBalance(limit int) ([]common.Address, []int, error) {
 	for it.Next() {
 		if _, ok := addrToBal[it.Event.To]; !ok {
 			addresses = append(addresses, it.Event.To)
-			spyBal, _ := getKnifeBal(&(it.Event.To))
-			addrToBal[it.Event.To] += spyBal
+			knifeBal, _ := getKnifeBal(&(it.Event.To))
+			addrToBal[it.Event.To] += knifeBal
 		}
 	}
 	sort.SliceStable(addresses, func(i, j int) bool {
@@ -231,4 +241,50 @@ func topKnifeBalance(limit int) ([]common.Address, []int, error) {
 	topBal := make([]int, limit)
 	for i, a := range addresses[:limit] {topBal[i] = int(addrToBal[a])}
 	return addresses[:limit], topBal, nil
+}
+
+func topMooBalance(limit int) ([]common.Address, []*big.Int, error) {
+	client, _ := ethclient.Dial(constants.RPC)
+	spyNFT, _ := bindings.NewSpyNFT(common.HexToAddress(constants.SpyNFT), client)
+	it, err := spyNFT.SpyNFTFilterer.FilterTransfer(
+		&bind.FilterOpts{
+			Start: constants.SpyNFTGenesisBlock,
+			End: nil,
+		},
+		[]common.Address{common.HexToAddress(constants.ZeroAddr)},
+		nil,
+		nil,
+	)
+	if err != nil {
+		return nil, nil, err
+	}
+	addresses := []common.Address{}
+	addrToBal := make(map[common.Address]*big.Int)
+	for it.Next() {
+		if _, ok := addrToBal[it.Event.To]; !ok {
+			addresses = append(addresses, it.Event.To)
+			mooBal, _ := getMooBal(&(it.Event.To))
+			if addrToBal[it.Event.To] == nil {
+				addrToBal[it.Event.To] = big.NewInt(0)
+			}
+			addrToBal[it.Event.To].Add(addrToBal[it.Event.To], mooBal)
+		}
+	}
+	sort.SliceStable(addresses, func(i, j int) bool {
+		return addrToBal[addresses[i]].Cmp(addrToBal[addresses[j]]) > 0
+	})
+
+	topBal := make([]*big.Int, limit)
+	for i, a := range addresses[:limit] {topBal[i] = addrToBal[a]}
+	return addresses[:limit], topBal, nil
+}
+
+func getAllBalances(source *common.Address) (uint64, uint64, *big.Int, error) {
+	spyBal, err := getSpyBal(source)
+	knifeBal, err := getKnifeBal(source)
+	mooBal, err := getMooBal(source)
+	if err != nil {
+		return 0, 0, nil, err
+	}
+	return spyBal, knifeBal, mooBal, nil
 }

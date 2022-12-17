@@ -80,6 +80,32 @@ func main() {
 					}
 					return exec(subcommands.SpyTopBalance, limit)
 				},
+			}, {
+				Name: "knife-balance-top",
+				Aliases: []string{"kbt"},
+				Action: func(ctx *cli.Context) error {
+					limit, err := strconv.Atoi(ctx.Args().Get(0))
+					if err != nil {
+						return err
+					}
+					return exec(subcommands.KnifeTopBalance, limit)
+				},
+			},  {
+				Name: "moo-balance-top",
+				Aliases: []string{"mbt"},
+				Action: func(ctx *cli.Context) error {
+					limit, err := strconv.Atoi(ctx.Args().Get(0))
+					if err != nil {
+						return err
+					}
+					return exec(subcommands.MooTopBalance, limit)
+				},
+			}, {
+				Name: "view-all-balances",
+				Aliases: []string{"all", "vab"},
+				Action: func(ctx *cli.Context) error {
+					return exec(subcommands.ViewAllBalances, common.HexToAddress(ctx.Args().Get(0)))
+				},
 			},
 		},
 	}
@@ -117,36 +143,7 @@ func exec(command subcommands.Command, v ...interface{}) error {
 		if err != nil {
 			return err
 		}
-		fBal := new(big.Float)
-		fBal.SetString(bal.String())
-		log.Printf("Address %s has Moo balance : %s\n", addr.Hex(), new(big.Float).Quo(fBal, big.NewFloat(math.Pow10(18))).String())
-	case subcommands.ViewSybilCluster:
-		addr := v[0].(common.Address)
-		cluster, err := subcommands.ViewSybilClusterComm(&addr)
-		if err != nil {
-			return err
-		}
-		log.Printf("Address %s was found to have received/sent spies from/to:\n", addr)
-		for _, a := range cluster {
-			if a.String() == addr.String() { continue }
-			log.Printf("\t%s\n", a.String())
-		}
-	case subcommands.SpyPrice:
-		price, err := subcommands.ViewSpyPriceComm()
-		if err != nil {
-			return err
-		}
-		fPrice := new(big.Float)
-		fPrice.SetString(price.String())
-		log.Printf("Spy price is currently at %s", new(big.Float).Quo(fPrice, big.NewFloat(math.Pow10(18))).String())
-	case subcommands.KnifePrice:
-		price, err := subcommands.ViewKnifePriceComm()
-		if err != nil {
-			return err
-		}
-		fPrice := new(big.Float)
-		fPrice.SetString(price.String())
-		log.Printf("Knife price is currently at %s", new(big.Float).Quo(fPrice, big.NewFloat(math.Pow10(18))).String())
+		log.Printf("Address %s has Moo balance : %s\n", addr.Hex(), getWithDecimals(bal, 18).String())
 	case subcommands.SpyTopBalance:
 		top, topBal, err := subcommands.SpyTopBalanceComm(v[0].(int))
 		if err != nil {
@@ -165,6 +162,57 @@ func exec(command subcommands.Command, v ...interface{}) error {
 		for i, a := range top {
 			log.Printf("\t%d. : %s has %d knives", i + 1, a.Hex(), topBal[i])
 		}
-	}	
+	case subcommands.MooTopBalance:
+		top,topBal, err := subcommands.MooTopBalanceComm(v[0].(int))
+		if err != nil {
+			return err
+		}
+		log.Printf("Moo leaderboard : \n")
+		for i, a := range top {
+			log.Printf("\t%d. : %s has %s moo", i + 1, a.Hex(), getWithDecimals(topBal[i], 18).String())
+		}
+	
+	case subcommands.SpyPrice:
+		price, err := subcommands.ViewSpyPriceComm()
+		if err != nil {
+			return err
+		}
+		fPrice := new(big.Float)
+		fPrice.SetString(price.String())
+		log.Printf("Spy price is currently at %s", new(big.Float).Quo(fPrice, big.NewFloat(math.Pow10(18))).String())
+	case subcommands.KnifePrice:
+		price, err := subcommands.ViewKnifePriceComm()
+		if err != nil {
+			return err
+		}
+		fPrice := new(big.Float)
+		fPrice.SetString(price.String())
+		log.Printf("Knife price is currently at %s", new(big.Float).Quo(fPrice, big.NewFloat(math.Pow10(18))).String())
+
+	case subcommands.ViewSybilCluster:
+		addr := v[0].(common.Address)
+		cluster, err := subcommands.ViewSybilClusterComm(&addr)
+		if err != nil {
+			return err
+		}
+		log.Printf("Address %s was found to have received/sent spies from/to:\n", addr)
+		for _, a := range cluster {
+			if a.String() == addr.String() { continue }
+			log.Printf("\t%s\n", a.String())
+		}
+	case subcommands.ViewAllBalances:
+		addr := v[0].(common.Address)
+		spyBal, knifeBal, mooBal, err := subcommands.ViewAllBalancesComm(&addr)
+		if err != nil {
+			return err
+		}
+		log.Printf("Address %s has : \n\t%d spies \n\t%d knives \n\t %s moo", addr.Hex(), spyBal, knifeBal, getWithDecimals(mooBal, 18).String())
+	}
 	return nil
 }
+
+func getWithDecimals(num *big.Int, decimals int) *big.Float {
+	fBal := new(big.Float)
+	fBal.SetString(num.String())
+	return new(big.Float).Quo(fBal, big.NewFloat(math.Pow10(decimals)))
+} 
