@@ -102,16 +102,14 @@ func getMooBal(target *common.Address) (*big.Int, error) {
 
 func getSybilCluster(source *common.Address) ([]common.Address, error) {
 	client, _ := ethclient.Dial(constants.RPC)
-	spyFilterer, err := bindings.NewSpyNFTFilterer(common.HexToAddress(constants.SpyNFT), client)
-	if err != nil {
-		return nil, err
-	}
-	return getSybilClusterBody(source, spyFilterer, make(map[common.Address]bool))
+	spyFilterer, _ := bindings.NewSpyNFTFilterer(common.HexToAddress(constants.SpyNFT), client)
+	knifeFilterer, _ := bindings.NewKnifeNFTFilterer(common.HexToAddress(constants.KnifeNFT), client)
+
+	return getSybilClusterBody(source, spyFilterer, knifeFilterer, make(map[common.Address]bool))
 }
 
-//@todo : add tracking of knife movements
-func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFilterer, cluster map[common.Address]bool) ([]common.Address, error) {
-	toItr, _ := spyFilterer.FilterTransfer(
+func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFilterer, knifeFilterer *bindings.KnifeNFTFilterer, cluster map[common.Address]bool) ([]common.Address, error) {
+	spyToItr, _ := spyFilterer.FilterTransfer(
 		&bind.FilterOpts{
 			Start: constants.SpyNFTGenesisBlock,
 			End: nil,
@@ -120,9 +118,27 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 		nil,
 		nil,
 	)
-	fromItr, _ := spyFilterer.FilterTransfer(
+	spyFromItr, _ := spyFilterer.FilterTransfer(
 		&bind.FilterOpts{
 			Start: constants.SpyNFTGenesisBlock,
+			End: nil,
+		},
+		nil,
+		[]common.Address{*source},
+		nil,
+	)
+	knifeToItr, _ := knifeFilterer.FilterTransfer(
+		&bind.FilterOpts{
+			Start: constants.KnifeNFTGenesisBlock,
+			End: nil,
+		},
+		[]common.Address{*source},
+		nil,
+		nil,
+	)
+	knifeFromItr, _ := knifeFilterer.FilterTransfer(
+		&bind.FilterOpts{
+			Start: constants.KnifeNFTGenesisBlock,
 			End: nil,
 		},
 		nil,
@@ -131,23 +147,37 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 	)
 	dirty := false
 	sources := []common.Address{}
-	for toItr.Next() {
-		if toItr.Event.To.String() != constants.ZeroAddr && !cluster[toItr.Event.To] {
-			cluster[toItr.Event.To] = true
+	for spyToItr.Next() {
+		if spyToItr.Event.To.String() != constants.ZeroAddr && !cluster[spyToItr.Event.To] {
+			cluster[spyToItr.Event.To] = true
 			dirty = true
-			sources = append(sources, toItr.Event.To)
+			sources = append(sources, spyToItr.Event.To)
 		}
 	}
-	for fromItr.Next() {
-		if fromItr.Event.From.String() != constants.ZeroAddr && !cluster[fromItr.Event.From] {
-			cluster[fromItr.Event.From] = true
+	for spyFromItr.Next() {
+		if spyFromItr.Event.From.String() != constants.ZeroAddr && !cluster[spyFromItr.Event.From] {
+			cluster[spyFromItr.Event.From] = true
 			dirty = true
-			sources = append(sources, fromItr.Event.From)
+			sources = append(sources, spyFromItr.Event.From)
+		}
+	}
+	for knifeToItr.Next() {
+		if knifeToItr.Event.To.String() != constants.ZeroAddr && !cluster[knifeToItr.Event.To] {
+			cluster[knifeToItr.Event.To] = true
+			dirty = true
+			sources = append(sources, knifeToItr.Event.To)
+		}
+	}
+	for knifeFromItr.Next() {
+		if knifeFromItr.Event.From.String() != constants.ZeroAddr && !cluster[knifeFromItr.Event.From] {
+			cluster[knifeFromItr.Event.From] = true
+			dirty = true
+			sources = append(sources, knifeFromItr.Event.From)
 		}
 	}
 	if dirty {
 		for _, s := range sources {
-			getSybilClusterBody(&s, spyFilterer, cluster)
+			getSybilClusterBody(&s, spyFilterer, knifeFilterer, cluster)
 		}
 	}
 	
