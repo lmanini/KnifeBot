@@ -30,7 +30,7 @@ var (
 
 // KnifeGameMetaData contains all meta data concerning the KnifeGame contract.
 var KnifeGameMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_gameStart\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_spyNft\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_knifeNFT\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"DumbMove\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NoWhales\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooEarly\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooLate\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooPoor\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"KnifePurchased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"Shouted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"hitman\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"victim\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"knifeId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"spyId\",\"type\":\"uint256\"}],\"name\":\"SpyKilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"SpyMinted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"SpyPurchased\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"BURN_ADDRESS\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"INITIAL_PURCHASE_SPY_ETH_PRICE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MULTISIG\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SHOUTS_FUNDS_RECIPIENT\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"claimFreeMoo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gameStart\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"hasUserClaimedFreeMooTokens\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"hasUserPrepurchased\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_knifeId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_spyId\",\"type\":\"uint256\"}],\"name\":\"killSpy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knifeLVRGDA\",\"outputs\":[{\"internalType\":\"contractLVRGDA\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knifeNFT\",\"outputs\":[{\"internalType\":\"contractKnifeNFT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knifePrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knivesMintedFromMoo\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_maxPrice\",\"type\":\"uint256\"}],\"name\":\"mintKnifeFromMoolah\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"knifeId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_maxPrice\",\"type\":\"uint256\"}],\"name\":\"mintSpyFromMoolah\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"spyId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"purchaseSpy\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"spyId\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"shout\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spiesMintedFromMoo\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spyLVRGDA\",\"outputs\":[{\"internalType\":\"contractLVRGDA\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spyNFT\",\"outputs\":[{\"internalType\":\"contractSpyNFT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spyPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"spyPriceETH\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_targetPrice\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_priceDecayPercent\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"_maxAmount\",\"type\":\"uint256\"},{\"internalType\":\"int256\",\"name\":\"_timeScale\",\"type\":\"int256\"}],\"name\":\"updateKnifeVRGDA\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_targetPrice\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_priceDecayPercent\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"_maxAmount\",\"type\":\"uint256\"},{\"internalType\":\"int256\",\"name\":\"_timeScale\",\"type\":\"int256\"}],\"name\":\"updateSpyVRGDA\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"userPurchasesOnDay\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_gameStart\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_spyNft\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_knifeNFT\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"DumbMove\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NoWhales\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooEarly\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooLate\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooPoor\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"KnifePurchased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"Shouted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"hitman\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"victim\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"knifeId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"spyId\",\"type\":\"uint256\"}],\"name\":\"SpyKilled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"SpyPurchasedETH\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"SpyPurchasedMoo\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"BURN_ADDRESS\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"INITIAL_PURCHASE_SPY_ETH_PRICE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MULTISIG\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SHOUTS_FUNDS_RECIPIENT\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"claimFreeMoo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gameStart\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"hasUserClaimedFreeMooTokens\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"hasUserPrepurchased\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isReimbursed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_knifeId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_spyId\",\"type\":\"uint256\"}],\"name\":\"killSpy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knifeLVRGDA\",\"outputs\":[{\"internalType\":\"contractLVRGDA\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knifeNFT\",\"outputs\":[{\"internalType\":\"contractKnifeNFT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knifePrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"knivesMintedFromMoo\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_maxPrice\",\"type\":\"uint256\"}],\"name\":\"mintKnifeFromMoolah\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"knifeId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_maxPrice\",\"type\":\"uint256\"}],\"name\":\"mintSpyFromMoolah\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"spyId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"purchaseSpy\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"spyId\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_reimburse\",\"type\":\"address[]\"}],\"name\":\"reimburseSpy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"shout\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spiesMintedFromMoo\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spyLVRGDA\",\"outputs\":[{\"internalType\":\"contractLVRGDA\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spyNFT\",\"outputs\":[{\"internalType\":\"contractSpyNFT\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"spyPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"spyPriceETH\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_targetPrice\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_priceDecayPercent\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"_maxAmount\",\"type\":\"uint256\"},{\"internalType\":\"int256\",\"name\":\"_timeScale\",\"type\":\"int256\"}],\"name\":\"updateKnifeVRGDA\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_targetPrice\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"_priceDecayPercent\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"_maxAmount\",\"type\":\"uint256\"},{\"internalType\":\"int256\",\"name\":\"_timeScale\",\"type\":\"int256\"}],\"name\":\"updateSpyVRGDA\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"userPurchasesOnDay\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // KnifeGameABI is the input ABI used to generate the binding from.
@@ -396,6 +396,37 @@ func (_KnifeGame *KnifeGameCallerSession) HasUserPrepurchased(arg0 common.Addres
 	return _KnifeGame.Contract.HasUserPrepurchased(&_KnifeGame.CallOpts, arg0)
 }
 
+// IsReimbursed is a free data retrieval call binding the contract method 0xb6bef898.
+//
+// Solidity: function isReimbursed() view returns(bool)
+func (_KnifeGame *KnifeGameCaller) IsReimbursed(opts *bind.CallOpts) (bool, error) {
+	var out []interface{}
+	err := _KnifeGame.contract.Call(opts, &out, "isReimbursed")
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// IsReimbursed is a free data retrieval call binding the contract method 0xb6bef898.
+//
+// Solidity: function isReimbursed() view returns(bool)
+func (_KnifeGame *KnifeGameSession) IsReimbursed() (bool, error) {
+	return _KnifeGame.Contract.IsReimbursed(&_KnifeGame.CallOpts)
+}
+
+// IsReimbursed is a free data retrieval call binding the contract method 0xb6bef898.
+//
+// Solidity: function isReimbursed() view returns(bool)
+func (_KnifeGame *KnifeGameCallerSession) IsReimbursed() (bool, error) {
+	return _KnifeGame.Contract.IsReimbursed(&_KnifeGame.CallOpts)
+}
+
 // KnifeLVRGDA is a free data retrieval call binding the contract method 0xde28179e.
 //
 // Solidity: function knifeLVRGDA() view returns(address)
@@ -518,6 +549,37 @@ func (_KnifeGame *KnifeGameSession) KnivesMintedFromMoo() (*big.Int, error) {
 // Solidity: function knivesMintedFromMoo() view returns(uint128)
 func (_KnifeGame *KnifeGameCallerSession) KnivesMintedFromMoo() (*big.Int, error) {
 	return _KnifeGame.Contract.KnivesMintedFromMoo(&_KnifeGame.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_KnifeGame *KnifeGameCaller) Owner(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _KnifeGame.contract.Call(opts, &out, "owner")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_KnifeGame *KnifeGameSession) Owner() (common.Address, error) {
+	return _KnifeGame.Contract.Owner(&_KnifeGame.CallOpts)
+}
+
+// Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
+//
+// Solidity: function owner() view returns(address)
+func (_KnifeGame *KnifeGameCallerSession) Owner() (common.Address, error) {
+	return _KnifeGame.Contract.Owner(&_KnifeGame.CallOpts)
 }
 
 // SpiesMintedFromMoo is a free data retrieval call binding the contract method 0xc3a48baa.
@@ -811,25 +873,67 @@ func (_KnifeGame *KnifeGameTransactorSession) OnERC721Received(arg0 common.Addre
 	return _KnifeGame.Contract.OnERC721Received(&_KnifeGame.TransactOpts, arg0, arg1, arg2, arg3)
 }
 
-// PurchaseSpy is a paid mutator transaction binding the contract method 0x36b60630.
+// PurchaseSpy is a paid mutator transaction binding the contract method 0xbe501955.
 //
-// Solidity: function purchaseSpy() payable returns(uint256 spyId)
-func (_KnifeGame *KnifeGameTransactor) PurchaseSpy(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _KnifeGame.contract.Transact(opts, "purchaseSpy")
+// Solidity: function purchaseSpy(address user) payable returns(uint256 spyId)
+func (_KnifeGame *KnifeGameTransactor) PurchaseSpy(opts *bind.TransactOpts, user common.Address) (*types.Transaction, error) {
+	return _KnifeGame.contract.Transact(opts, "purchaseSpy", user)
 }
 
-// PurchaseSpy is a paid mutator transaction binding the contract method 0x36b60630.
+// PurchaseSpy is a paid mutator transaction binding the contract method 0xbe501955.
 //
-// Solidity: function purchaseSpy() payable returns(uint256 spyId)
-func (_KnifeGame *KnifeGameSession) PurchaseSpy() (*types.Transaction, error) {
-	return _KnifeGame.Contract.PurchaseSpy(&_KnifeGame.TransactOpts)
+// Solidity: function purchaseSpy(address user) payable returns(uint256 spyId)
+func (_KnifeGame *KnifeGameSession) PurchaseSpy(user common.Address) (*types.Transaction, error) {
+	return _KnifeGame.Contract.PurchaseSpy(&_KnifeGame.TransactOpts, user)
 }
 
-// PurchaseSpy is a paid mutator transaction binding the contract method 0x36b60630.
+// PurchaseSpy is a paid mutator transaction binding the contract method 0xbe501955.
 //
-// Solidity: function purchaseSpy() payable returns(uint256 spyId)
-func (_KnifeGame *KnifeGameTransactorSession) PurchaseSpy() (*types.Transaction, error) {
-	return _KnifeGame.Contract.PurchaseSpy(&_KnifeGame.TransactOpts)
+// Solidity: function purchaseSpy(address user) payable returns(uint256 spyId)
+func (_KnifeGame *KnifeGameTransactorSession) PurchaseSpy(user common.Address) (*types.Transaction, error) {
+	return _KnifeGame.Contract.PurchaseSpy(&_KnifeGame.TransactOpts, user)
+}
+
+// ReimburseSpy is a paid mutator transaction binding the contract method 0xa7caef3f.
+//
+// Solidity: function reimburseSpy(address[] _reimburse) returns()
+func (_KnifeGame *KnifeGameTransactor) ReimburseSpy(opts *bind.TransactOpts, _reimburse []common.Address) (*types.Transaction, error) {
+	return _KnifeGame.contract.Transact(opts, "reimburseSpy", _reimburse)
+}
+
+// ReimburseSpy is a paid mutator transaction binding the contract method 0xa7caef3f.
+//
+// Solidity: function reimburseSpy(address[] _reimburse) returns()
+func (_KnifeGame *KnifeGameSession) ReimburseSpy(_reimburse []common.Address) (*types.Transaction, error) {
+	return _KnifeGame.Contract.ReimburseSpy(&_KnifeGame.TransactOpts, _reimburse)
+}
+
+// ReimburseSpy is a paid mutator transaction binding the contract method 0xa7caef3f.
+//
+// Solidity: function reimburseSpy(address[] _reimburse) returns()
+func (_KnifeGame *KnifeGameTransactorSession) ReimburseSpy(_reimburse []common.Address) (*types.Transaction, error) {
+	return _KnifeGame.Contract.ReimburseSpy(&_KnifeGame.TransactOpts, _reimburse)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_KnifeGame *KnifeGameTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _KnifeGame.contract.Transact(opts, "renounceOwnership")
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_KnifeGame *KnifeGameSession) RenounceOwnership() (*types.Transaction, error) {
+	return _KnifeGame.Contract.RenounceOwnership(&_KnifeGame.TransactOpts)
+}
+
+// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() returns()
+func (_KnifeGame *KnifeGameTransactorSession) RenounceOwnership() (*types.Transaction, error) {
+	return _KnifeGame.Contract.RenounceOwnership(&_KnifeGame.TransactOpts)
 }
 
 // Shout is a paid mutator transaction binding the contract method 0x625d2055.
@@ -851,6 +955,27 @@ func (_KnifeGame *KnifeGameSession) Shout(message string) (*types.Transaction, e
 // Solidity: function shout(string message) payable returns()
 func (_KnifeGame *KnifeGameTransactorSession) Shout(message string) (*types.Transaction, error) {
 	return _KnifeGame.Contract.Shout(&_KnifeGame.TransactOpts, message)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_KnifeGame *KnifeGameTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _KnifeGame.contract.Transact(opts, "transferOwnership", newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_KnifeGame *KnifeGameSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _KnifeGame.Contract.TransferOwnership(&_KnifeGame.TransactOpts, newOwner)
+}
+
+// TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
+//
+// Solidity: function transferOwnership(address newOwner) returns()
+func (_KnifeGame *KnifeGameTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _KnifeGame.Contract.TransferOwnership(&_KnifeGame.TransactOpts, newOwner)
 }
 
 // UpdateKnifeVRGDA is a paid mutator transaction binding the contract method 0x317be1b7.
@@ -1043,6 +1168,159 @@ func (_KnifeGame *KnifeGameFilterer) WatchKnifePurchased(opts *bind.WatchOpts, s
 func (_KnifeGame *KnifeGameFilterer) ParseKnifePurchased(log types.Log) (*KnifeGameKnifePurchased, error) {
 	event := new(KnifeGameKnifePurchased)
 	if err := _KnifeGame.contract.UnpackLog(event, "KnifePurchased", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// KnifeGameOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the KnifeGame contract.
+type KnifeGameOwnershipTransferredIterator struct {
+	Event *KnifeGameOwnershipTransferred // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *KnifeGameOwnershipTransferredIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(KnifeGameOwnershipTransferred)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(KnifeGameOwnershipTransferred)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *KnifeGameOwnershipTransferredIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *KnifeGameOwnershipTransferredIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// KnifeGameOwnershipTransferred represents a OwnershipTransferred event raised by the KnifeGame contract.
+type KnifeGameOwnershipTransferred struct {
+	PreviousOwner common.Address
+	NewOwner      common.Address
+	Raw           types.Log // Blockchain specific contextual infos
+}
+
+// FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_KnifeGame *KnifeGameFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*KnifeGameOwnershipTransferredIterator, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _KnifeGame.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return &KnifeGameOwnershipTransferredIterator{contract: _KnifeGame.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
+}
+
+// WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_KnifeGame *KnifeGameFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *KnifeGameOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _KnifeGame.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(KnifeGameOwnershipTransferred)
+				if err := _KnifeGame.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
+//
+// Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+func (_KnifeGame *KnifeGameFilterer) ParseOwnershipTransferred(log types.Log) (*KnifeGameOwnershipTransferred, error) {
+	event := new(KnifeGameOwnershipTransferred)
+	if err := _KnifeGame.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1349,9 +1627,9 @@ func (_KnifeGame *KnifeGameFilterer) ParseSpyKilled(log types.Log) (*KnifeGameSp
 	return event, nil
 }
 
-// KnifeGameSpyMintedIterator is returned from FilterSpyMinted and is used to iterate over the raw logs and unpacked data for SpyMinted events raised by the KnifeGame contract.
-type KnifeGameSpyMintedIterator struct {
-	Event *KnifeGameSpyMinted // Event containing the contract specifics and raw log
+// KnifeGameSpyPurchasedETHIterator is returned from FilterSpyPurchasedETH and is used to iterate over the raw logs and unpacked data for SpyPurchasedETH events raised by the KnifeGame contract.
+type KnifeGameSpyPurchasedETHIterator struct {
+	Event *KnifeGameSpyPurchasedETH // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1365,7 +1643,7 @@ type KnifeGameSpyMintedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *KnifeGameSpyMintedIterator) Next() bool {
+func (it *KnifeGameSpyPurchasedETHIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1374,7 +1652,7 @@ func (it *KnifeGameSpyMintedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(KnifeGameSpyMinted)
+			it.Event = new(KnifeGameSpyPurchasedETH)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1389,7 +1667,7 @@ func (it *KnifeGameSpyMintedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(KnifeGameSpyMinted)
+		it.Event = new(KnifeGameSpyPurchasedETH)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1405,28 +1683,28 @@ func (it *KnifeGameSpyMintedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *KnifeGameSpyMintedIterator) Error() error {
+func (it *KnifeGameSpyPurchasedETHIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *KnifeGameSpyMintedIterator) Close() error {
+func (it *KnifeGameSpyPurchasedETHIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// KnifeGameSpyMinted represents a SpyMinted event raised by the KnifeGame contract.
-type KnifeGameSpyMinted struct {
+// KnifeGameSpyPurchasedETH represents a SpyPurchasedETH event raised by the KnifeGame contract.
+type KnifeGameSpyPurchasedETH struct {
 	Recipient common.Address
 	Id        *big.Int
 	Raw       types.Log // Blockchain specific contextual infos
 }
 
-// FilterSpyMinted is a free log retrieval operation binding the contract event 0xf82e2590f1955aa286931546a6a9af6e567a515ce1a63338570144879ff3edbd.
+// FilterSpyPurchasedETH is a free log retrieval operation binding the contract event 0x81901b6ecf8f0aabcd532317ec6918cbd7c92fe3639de618fc5f6a55c11a5671.
 //
-// Solidity: event SpyMinted(address indexed recipient, uint256 indexed id)
-func (_KnifeGame *KnifeGameFilterer) FilterSpyMinted(opts *bind.FilterOpts, recipient []common.Address, id []*big.Int) (*KnifeGameSpyMintedIterator, error) {
+// Solidity: event SpyPurchasedETH(address indexed recipient, uint256 indexed id)
+func (_KnifeGame *KnifeGameFilterer) FilterSpyPurchasedETH(opts *bind.FilterOpts, recipient []common.Address, id []*big.Int) (*KnifeGameSpyPurchasedETHIterator, error) {
 
 	var recipientRule []interface{}
 	for _, recipientItem := range recipient {
@@ -1437,17 +1715,17 @@ func (_KnifeGame *KnifeGameFilterer) FilterSpyMinted(opts *bind.FilterOpts, reci
 		idRule = append(idRule, idItem)
 	}
 
-	logs, sub, err := _KnifeGame.contract.FilterLogs(opts, "SpyMinted", recipientRule, idRule)
+	logs, sub, err := _KnifeGame.contract.FilterLogs(opts, "SpyPurchasedETH", recipientRule, idRule)
 	if err != nil {
 		return nil, err
 	}
-	return &KnifeGameSpyMintedIterator{contract: _KnifeGame.contract, event: "SpyMinted", logs: logs, sub: sub}, nil
+	return &KnifeGameSpyPurchasedETHIterator{contract: _KnifeGame.contract, event: "SpyPurchasedETH", logs: logs, sub: sub}, nil
 }
 
-// WatchSpyMinted is a free log subscription operation binding the contract event 0xf82e2590f1955aa286931546a6a9af6e567a515ce1a63338570144879ff3edbd.
+// WatchSpyPurchasedETH is a free log subscription operation binding the contract event 0x81901b6ecf8f0aabcd532317ec6918cbd7c92fe3639de618fc5f6a55c11a5671.
 //
-// Solidity: event SpyMinted(address indexed recipient, uint256 indexed id)
-func (_KnifeGame *KnifeGameFilterer) WatchSpyMinted(opts *bind.WatchOpts, sink chan<- *KnifeGameSpyMinted, recipient []common.Address, id []*big.Int) (event.Subscription, error) {
+// Solidity: event SpyPurchasedETH(address indexed recipient, uint256 indexed id)
+func (_KnifeGame *KnifeGameFilterer) WatchSpyPurchasedETH(opts *bind.WatchOpts, sink chan<- *KnifeGameSpyPurchasedETH, recipient []common.Address, id []*big.Int) (event.Subscription, error) {
 
 	var recipientRule []interface{}
 	for _, recipientItem := range recipient {
@@ -1458,7 +1736,7 @@ func (_KnifeGame *KnifeGameFilterer) WatchSpyMinted(opts *bind.WatchOpts, sink c
 		idRule = append(idRule, idItem)
 	}
 
-	logs, sub, err := _KnifeGame.contract.WatchLogs(opts, "SpyMinted", recipientRule, idRule)
+	logs, sub, err := _KnifeGame.contract.WatchLogs(opts, "SpyPurchasedETH", recipientRule, idRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1468,8 +1746,8 @@ func (_KnifeGame *KnifeGameFilterer) WatchSpyMinted(opts *bind.WatchOpts, sink c
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(KnifeGameSpyMinted)
-				if err := _KnifeGame.contract.UnpackLog(event, "SpyMinted", log); err != nil {
+				event := new(KnifeGameSpyPurchasedETH)
+				if err := _KnifeGame.contract.UnpackLog(event, "SpyPurchasedETH", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1490,21 +1768,21 @@ func (_KnifeGame *KnifeGameFilterer) WatchSpyMinted(opts *bind.WatchOpts, sink c
 	}), nil
 }
 
-// ParseSpyMinted is a log parse operation binding the contract event 0xf82e2590f1955aa286931546a6a9af6e567a515ce1a63338570144879ff3edbd.
+// ParseSpyPurchasedETH is a log parse operation binding the contract event 0x81901b6ecf8f0aabcd532317ec6918cbd7c92fe3639de618fc5f6a55c11a5671.
 //
-// Solidity: event SpyMinted(address indexed recipient, uint256 indexed id)
-func (_KnifeGame *KnifeGameFilterer) ParseSpyMinted(log types.Log) (*KnifeGameSpyMinted, error) {
-	event := new(KnifeGameSpyMinted)
-	if err := _KnifeGame.contract.UnpackLog(event, "SpyMinted", log); err != nil {
+// Solidity: event SpyPurchasedETH(address indexed recipient, uint256 indexed id)
+func (_KnifeGame *KnifeGameFilterer) ParseSpyPurchasedETH(log types.Log) (*KnifeGameSpyPurchasedETH, error) {
+	event := new(KnifeGameSpyPurchasedETH)
+	if err := _KnifeGame.contract.UnpackLog(event, "SpyPurchasedETH", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// KnifeGameSpyPurchasedIterator is returned from FilterSpyPurchased and is used to iterate over the raw logs and unpacked data for SpyPurchased events raised by the KnifeGame contract.
-type KnifeGameSpyPurchasedIterator struct {
-	Event *KnifeGameSpyPurchased // Event containing the contract specifics and raw log
+// KnifeGameSpyPurchasedMooIterator is returned from FilterSpyPurchasedMoo and is used to iterate over the raw logs and unpacked data for SpyPurchasedMoo events raised by the KnifeGame contract.
+type KnifeGameSpyPurchasedMooIterator struct {
+	Event *KnifeGameSpyPurchasedMoo // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1518,7 +1796,7 @@ type KnifeGameSpyPurchasedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *KnifeGameSpyPurchasedIterator) Next() bool {
+func (it *KnifeGameSpyPurchasedMooIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1527,7 +1805,7 @@ func (it *KnifeGameSpyPurchasedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(KnifeGameSpyPurchased)
+			it.Event = new(KnifeGameSpyPurchasedMoo)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1542,7 +1820,7 @@ func (it *KnifeGameSpyPurchasedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(KnifeGameSpyPurchased)
+		it.Event = new(KnifeGameSpyPurchasedMoo)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1558,29 +1836,29 @@ func (it *KnifeGameSpyPurchasedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *KnifeGameSpyPurchasedIterator) Error() error {
+func (it *KnifeGameSpyPurchasedMooIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *KnifeGameSpyPurchasedIterator) Close() error {
+func (it *KnifeGameSpyPurchasedMooIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// KnifeGameSpyPurchased represents a SpyPurchased event raised by the KnifeGame contract.
-type KnifeGameSpyPurchased struct {
+// KnifeGameSpyPurchasedMoo represents a SpyPurchasedMoo event raised by the KnifeGame contract.
+type KnifeGameSpyPurchasedMoo struct {
 	Recipient common.Address
 	Id        *big.Int
 	Price     *big.Int
 	Raw       types.Log // Blockchain specific contextual infos
 }
 
-// FilterSpyPurchased is a free log retrieval operation binding the contract event 0x08d83b082b867b304d2f59332800a333b519e7236f0bf5b500090aab59a6ac11.
+// FilterSpyPurchasedMoo is a free log retrieval operation binding the contract event 0xf387c02ea0b7fe0642d2110ca2b211586dc019957d013bc7af259a30a20b5413.
 //
-// Solidity: event SpyPurchased(address indexed recipient, uint256 indexed id, uint256 price)
-func (_KnifeGame *KnifeGameFilterer) FilterSpyPurchased(opts *bind.FilterOpts, recipient []common.Address, id []*big.Int) (*KnifeGameSpyPurchasedIterator, error) {
+// Solidity: event SpyPurchasedMoo(address indexed recipient, uint256 indexed id, uint256 price)
+func (_KnifeGame *KnifeGameFilterer) FilterSpyPurchasedMoo(opts *bind.FilterOpts, recipient []common.Address, id []*big.Int) (*KnifeGameSpyPurchasedMooIterator, error) {
 
 	var recipientRule []interface{}
 	for _, recipientItem := range recipient {
@@ -1591,17 +1869,17 @@ func (_KnifeGame *KnifeGameFilterer) FilterSpyPurchased(opts *bind.FilterOpts, r
 		idRule = append(idRule, idItem)
 	}
 
-	logs, sub, err := _KnifeGame.contract.FilterLogs(opts, "SpyPurchased", recipientRule, idRule)
+	logs, sub, err := _KnifeGame.contract.FilterLogs(opts, "SpyPurchasedMoo", recipientRule, idRule)
 	if err != nil {
 		return nil, err
 	}
-	return &KnifeGameSpyPurchasedIterator{contract: _KnifeGame.contract, event: "SpyPurchased", logs: logs, sub: sub}, nil
+	return &KnifeGameSpyPurchasedMooIterator{contract: _KnifeGame.contract, event: "SpyPurchasedMoo", logs: logs, sub: sub}, nil
 }
 
-// WatchSpyPurchased is a free log subscription operation binding the contract event 0x08d83b082b867b304d2f59332800a333b519e7236f0bf5b500090aab59a6ac11.
+// WatchSpyPurchasedMoo is a free log subscription operation binding the contract event 0xf387c02ea0b7fe0642d2110ca2b211586dc019957d013bc7af259a30a20b5413.
 //
-// Solidity: event SpyPurchased(address indexed recipient, uint256 indexed id, uint256 price)
-func (_KnifeGame *KnifeGameFilterer) WatchSpyPurchased(opts *bind.WatchOpts, sink chan<- *KnifeGameSpyPurchased, recipient []common.Address, id []*big.Int) (event.Subscription, error) {
+// Solidity: event SpyPurchasedMoo(address indexed recipient, uint256 indexed id, uint256 price)
+func (_KnifeGame *KnifeGameFilterer) WatchSpyPurchasedMoo(opts *bind.WatchOpts, sink chan<- *KnifeGameSpyPurchasedMoo, recipient []common.Address, id []*big.Int) (event.Subscription, error) {
 
 	var recipientRule []interface{}
 	for _, recipientItem := range recipient {
@@ -1612,7 +1890,7 @@ func (_KnifeGame *KnifeGameFilterer) WatchSpyPurchased(opts *bind.WatchOpts, sin
 		idRule = append(idRule, idItem)
 	}
 
-	logs, sub, err := _KnifeGame.contract.WatchLogs(opts, "SpyPurchased", recipientRule, idRule)
+	logs, sub, err := _KnifeGame.contract.WatchLogs(opts, "SpyPurchasedMoo", recipientRule, idRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1622,8 +1900,8 @@ func (_KnifeGame *KnifeGameFilterer) WatchSpyPurchased(opts *bind.WatchOpts, sin
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(KnifeGameSpyPurchased)
-				if err := _KnifeGame.contract.UnpackLog(event, "SpyPurchased", log); err != nil {
+				event := new(KnifeGameSpyPurchasedMoo)
+				if err := _KnifeGame.contract.UnpackLog(event, "SpyPurchasedMoo", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1644,12 +1922,12 @@ func (_KnifeGame *KnifeGameFilterer) WatchSpyPurchased(opts *bind.WatchOpts, sin
 	}), nil
 }
 
-// ParseSpyPurchased is a log parse operation binding the contract event 0x08d83b082b867b304d2f59332800a333b519e7236f0bf5b500090aab59a6ac11.
+// ParseSpyPurchasedMoo is a log parse operation binding the contract event 0xf387c02ea0b7fe0642d2110ca2b211586dc019957d013bc7af259a30a20b5413.
 //
-// Solidity: event SpyPurchased(address indexed recipient, uint256 indexed id, uint256 price)
-func (_KnifeGame *KnifeGameFilterer) ParseSpyPurchased(log types.Log) (*KnifeGameSpyPurchased, error) {
-	event := new(KnifeGameSpyPurchased)
-	if err := _KnifeGame.contract.UnpackLog(event, "SpyPurchased", log); err != nil {
+// Solidity: event SpyPurchasedMoo(address indexed recipient, uint256 indexed id, uint256 price)
+func (_KnifeGame *KnifeGameFilterer) ParseSpyPurchasedMoo(log types.Log) (*KnifeGameSpyPurchasedMoo, error) {
+	event := new(KnifeGameSpyPurchasedMoo)
+	if err := _KnifeGame.contract.UnpackLog(event, "SpyPurchasedMoo", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

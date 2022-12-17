@@ -103,6 +103,13 @@ contract SpyNFT is OwnedEnumerableNFT {
 
     /// @notice Superuser transferFrom
     function sudoTransferFrom(address from, address to, uint256 tokenId) public onlyOwner {
+        // if (getUserData[from].lastTimestamp == 0) {
+        //     getUserData[from].lastTimestamp = uint64(block.timestamp);
+        // }
+        // if (getUserData[to].lastTimestamp == 0) {
+        //     getUserData[to].lastTimestamp = uint64(block.timestamp);
+        // }
+
         unchecked {
             // We update their last balance before updating their emission multiple to avoid
             // penalizing them by retroactively applying their new (lower) balanceOf
@@ -143,6 +150,13 @@ contract SpyNFT is OwnedEnumerableNFT {
     function transferFrom(address from, address to, uint256 tokenId) public override (ERC721, IERC721) {
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
 
+        if (getUserData[from].lastTimestamp == 0) {
+            getUserData[from].lastTimestamp = uint64(block.timestamp);
+        }
+        if (getUserData[to].lastTimestamp == 0) {
+            getUserData[to].lastTimestamp = uint64(block.timestamp);
+        }
+
         unchecked {
             // We update their last balance before updating their emission multiple to avoid
             // penalizing them by retroactively applying their new (lower) balanceOf
@@ -157,6 +171,27 @@ contract SpyNFT is OwnedEnumerableNFT {
 
         // State changes happen *after* gooBalance is update
         _transfer(from, to, tokenId);
+    }
+
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data)
+        public
+        override (ERC721, IERC721)
+    {
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not token owner or approved");
+
+        unchecked {
+            // We update their last balance before updating their emission multiple to avoid
+            // penalizing them by retroactively applying their new (lower) balanceOf
+            getUserData[from].lastBalance = uint128(gooBalance(from));
+            getUserData[from].lastTimestamp = uint64(block.timestamp);
+
+            // We update their last balance before updating their emission multiple to avoid
+            // overpaying them by retroactively applying their new (higher) balanceOf
+            getUserData[to].lastBalance = uint128(gooBalance(to));
+            getUserData[to].lastTimestamp = uint64(block.timestamp);
+        }
+
+        _safeTransfer(from, to, tokenId, data);
     }
 
     function tokenURI(uint256 tokenId) public pure override returns (string memory) {

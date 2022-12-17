@@ -138,14 +138,14 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 	dirty := false
 	sources := []common.Address{}
 	for toItr.Next() {
-		if toItr.Event.To.String() != "0x0000000000000000000000000000000000000000" && !cluster[toItr.Event.To] {
+		if toItr.Event.To.String() != constants.ZeroAddr && !cluster[toItr.Event.To] {
 			cluster[toItr.Event.To] = true
 			dirty = true
 			sources = append(sources, toItr.Event.To)
 		}
 	}
 	for fromItr.Next() {
-		if fromItr.Event.From.String() != "0x0000000000000000000000000000000000000000" && !cluster[fromItr.Event.From] {
+		if fromItr.Event.From.String() != constants.ZeroAddr && !cluster[fromItr.Event.From] {
 			cluster[fromItr.Event.From] = true
 			dirty = true
 			sources = append(sources, fromItr.Event.From)
@@ -172,7 +172,7 @@ func topSpyBalance(limit int) ([]common.Address, []int, error) {
 			Start: constants.SpyNFTGenesisBlock,
 			End: nil,
 		},
-		[]common.Address{common.HexToAddress("0x0000000000000000000000000000000000000000")},
+		[]common.Address{common.HexToAddress(constants.ZeroAddr)},
 		nil,
 		nil,
 	)
