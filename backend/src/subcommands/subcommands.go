@@ -109,26 +109,7 @@ func getSybilCluster(source *common.Address) ([]common.Address, error) {
 	return getSybilClusterBody(source, spyFilterer, make(map[common.Address]bool))
 }
 
-func getSpyPrice() (*big.Int, error) {
-	client, _ := ethclient.Dial(constants.RPC)	
-	caller, _ := bindings.NewKnifeGameCaller(common.HexToAddress(constants.KnifeGame), client)
-	price, err := caller.SpyPrice(&bind.CallOpts{})
-	if err != nil {
-		return nil, err
-	}
-	return price, nil
-}
-
-func getKnifePrice() (*big.Int, error) {
-	client, _ := ethclient.Dial(constants.RPC)	
-	caller, _ := bindings.NewKnifeGameCaller(common.HexToAddress(constants.KnifeGame), client)
-	price, err := caller.KnifePrice(&bind.CallOpts{})
-	if err != nil {
-		return nil, err
-	}
-	return price, nil
-}
-
+//@todo : add tracking of knife movements
 func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFilterer, cluster map[common.Address]bool) ([]common.Address, error) {
 	toItr, _ := spyFilterer.FilterTransfer(
 		&bind.FilterOpts{
@@ -175,6 +156,26 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 		keys = append(keys, a)
 	}
 	return keys, nil
+}
+
+func getSpyPrice() (*big.Int, error) {
+	client, _ := ethclient.Dial(constants.RPC)	
+	caller, _ := bindings.NewKnifeGameCaller(common.HexToAddress(constants.KnifeGame), client)
+	price, err := caller.SpyPrice(&bind.CallOpts{})
+	if err != nil {
+		return nil, err
+	}
+	return price, nil
+}
+
+func getKnifePrice() (*big.Int, error) {
+	client, _ := ethclient.Dial(constants.RPC)	
+	caller, _ := bindings.NewKnifeGameCaller(common.HexToAddress(constants.KnifeGame), client)
+	price, err := caller.KnifePrice(&bind.CallOpts{})
+	if err != nil {
+		return nil, err
+	}
+	return price, nil
 }
 
 func topSpyBalance(limit int) ([]common.Address, []int, error) {

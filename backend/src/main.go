@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/joho/godotenv"
 	"github.com/urfave/cli/v2"
 )
@@ -116,15 +117,15 @@ func main() {
 }
 
 func run() error {
+	// init
 	err := godotenv.Load(".env")
 	if err != nil { return err }
-	
-	// bot auto logic
-	val, ok := os.LookupEnv("PK1")
-	if !ok {
-		log.Printf("Nope")
-	} else {
-		log.Printf("%s", val)
+	pks := getPrivateKeys()
+	addrs := getAddresses(pks)
+
+	//main body
+	for {
+		playKnifeGame(pks, addrs)
 	}
 
 	return nil
@@ -225,3 +226,30 @@ func getWithDecimals(num *big.Int, decimals int) *big.Float {
 	fBal.SetString(num.String())
 	return new(big.Float).Quo(fBal, big.NewFloat(math.Pow10(decimals)))
 } 
+
+func getPrivateKeys() []string {
+	pk1, _ := os.LookupEnv("PK1")
+	pk2, _ := os.LookupEnv("PK2")
+	pk3, _ := os.LookupEnv("PK3")
+	pk4, _ := os.LookupEnv("PK4")
+
+	return []string{pk1, pk2, pk3, pk4}
+}
+
+func getAddresses(pks []string) []common.Address{
+	addresses := make([]common.Address, 0, len(pks))
+	for _, pk := range pks {
+		ecdsa, _ := crypto.HexToECDSA(pk)
+		addr := crypto.PubkeyToAddress(ecdsa.PublicKey)
+		addresses = append(addresses, addr)
+	}
+	return addresses
+}
+
+func playKnifeGame(pks []string, addrs []common.Address) {
+
+	//initial log : commanding these addrs
+
+	//main loop
+
+}

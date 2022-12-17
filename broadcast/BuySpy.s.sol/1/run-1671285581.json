@@ -1,0 +1,100 @@
+{
+  "transactions": [
+    {
+      "hash": "0x569a3fdf563e2f473edfe1669166c9ae155be488ceacd7120b1c6280658e8cca",
+      "transactionType": "CALL",
+      "contractName": "KnifeGame",
+      "contractAddress": "0x6488b54F9502e9A4B1D7BB90863012F682fe60c6",
+      "function": "purchaseSpy(address):(uint256)",
+      "arguments": [
+        "0xbFc58f666741e3d6794cFeC9153f6CFBda90dabD"
+      ],
+      "rpc": "http://localhost:8545",
+      "transaction": {
+        "type": "0x02",
+        "from": "0xbfc58f666741e3d6794cfec9153f6cfbda90dabd",
+        "to": "0x6488b54f9502e9a4b1d7bb90863012f682fe60c6",
+        "gas": "0x48174",
+        "value": "0x16345785d8a0000",
+        "data": "0xbe501955000000000000000000000000bfc58f666741e3d6794cfec9153f6cfbda90dabd",
+        "nonce": "0x0",
+        "accessList": []
+      },
+      "additionalContracts": []
+    }
+  ],
+  "receipts": [
+    {
+      "transactionHash": "0x569a3fdf563e2f473edfe1669166c9ae155be488ceacd7120b1c6280658e8cca",
+      "transactionIndex": "0x0",
+      "blockHash": "0xebf4d575e602b8e08102c266823d40a6334f9f78c10ff0e82f9afd31c834c4db",
+      "blockNumber": "0xf7443d",
+      "from": "0xbFc58f666741e3d6794cFeC9153f6CFBda90dabD",
+      "to": "0x6488b54F9502e9A4B1D7BB90863012F682fe60c6",
+      "cumulativeGasUsed": "0x34315",
+      "gasUsed": "0x34315",
+      "contractAddress": null,
+      "logs": [
+        {
+          "address": "0x503C42470951B7c163730fD8b67EA66FECd8c774",
+          "topics": [
+            "0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d",
+            "0x0000000000000000000000006488b54f9502e9a4b1d7bb90863012f682fe60c6"
+          ],
+          "data": "0x000000000000000000000000000000000000000000000000016345785d8a0000",
+          "blockHash": "0xebf4d575e602b8e08102c266823d40a6334f9f78c10ff0e82f9afd31c834c4db",
+          "blockNumber": "0xf7443d",
+          "transactionHash": "0x569a3fdf563e2f473edfe1669166c9ae155be488ceacd7120b1c6280658e8cca",
+          "transactionIndex": "0x0",
+          "logIndex": "0x0",
+          "transactionLogIndex": "0x0",
+          "removed": false
+        },
+        {
+          "address": "0x265f4EbCB310bB98e76436569D014D3D55087Aa8",
+          "topics": [
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "0x000000000000000000000000bfc58f666741e3d6794cfec9153f6cfbda90dabd",
+            "0x00000000000000000000000000000000000000000000000000000000000000df"
+          ],
+          "data": "0x",
+          "blockHash": "0xebf4d575e602b8e08102c266823d40a6334f9f78c10ff0e82f9afd31c834c4db",
+          "blockNumber": "0xf7443d",
+          "transactionHash": "0x569a3fdf563e2f473edfe1669166c9ae155be488ceacd7120b1c6280658e8cca",
+          "transactionIndex": "0x0",
+          "logIndex": "0x1",
+          "transactionLogIndex": "0x1",
+          "removed": false
+        },
+        {
+          "address": "0x6488b54F9502e9A4B1D7BB90863012F682fe60c6",
+          "topics": [
+            "0x81901b6ecf8f0aabcd532317ec6918cbd7c92fe3639de618fc5f6a55c11a5671",
+            "0x000000000000000000000000bfc58f666741e3d6794cfec9153f6cfbda90dabd",
+            "0x00000000000000000000000000000000000000000000000000000000000000df"
+          ],
+          "data": "0x",
+          "blockHash": "0xebf4d575e602b8e08102c266823d40a6334f9f78c10ff0e82f9afd31c834c4db",
+          "blockNumber": "0xf7443d",
+          "transactionHash": "0x569a3fdf563e2f473edfe1669166c9ae155be488ceacd7120b1c6280658e8cca",
+          "transactionIndex": "0x0",
+          "logIndex": "0x2",
+          "transactionLogIndex": "0x2",
+          "removed": false
+        }
+      ],
+      "status": "0x1",
+      "logsBloom": "0x00000000000000000080000000000080001000100000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000080000000000800008000000000000000000000000000000000000000000000000020000000000000000008801000000000000000000000030000000000004000802000000000000000000000000000000000000000000000000000000002000000004000000000040000000000000000000000002000000000000000000000002000800000008000000000000000000000000000000000002000020000000000000000000000000800000200000000001000000004000000000000000",
+      "effectiveGasPrice": "0x3870987e8"
+    }
+  ],
+  "libraries": [],
+  "pending": [],
+  "path": "/mnt/c/Users/lmani/Documents/Code/Searchers/KnifeBot/broadcast/BuySpy.s.sol/1/run-latest.json",
+  "returns": {},
+  "timestamp": 1671285581,
+  "chain": 1,
+  "multi": false,
+  "commit": "89e1714"
+}

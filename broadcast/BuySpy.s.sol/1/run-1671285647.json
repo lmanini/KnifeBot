@@ -1,0 +1,37 @@
+{
+  "transactions": [
+    {
+      "hash": "0x87a06349001f4653159b9c9a3b5ce8ee75c72aa9bd5d04497f0b6871e39b8817",
+      "transactionType": "CALL",
+      "contractName": "KnifeGame",
+      "contractAddress": "0x6488b54F9502e9A4B1D7BB90863012F682fe60c6",
+      "function": "purchaseSpy(address):(uint256)",
+      "arguments": [
+        "0xbFc58f666741e3d6794cFeC9153f6CFBda90dabD"
+      ],
+      "rpc": "https://rpc.ankr.com/eth",
+      "transaction": {
+        "type": "0x02",
+        "from": "0xbfc58f666741e3d6794cfec9153f6cfbda90dabd",
+        "to": "0x6488b54f9502e9a4b1d7bb90863012f682fe60c6",
+        "gas": "0x48174",
+        "value": "0x16345785d8a0000",
+        "data": "0xbe501955000000000000000000000000bfc58f666741e3d6794cfec9153f6cfbda90dabd",
+        "nonce": "0x0",
+        "accessList": []
+      },
+      "additionalContracts": []
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0x87a06349001f4653159b9c9a3b5ce8ee75c72aa9bd5d04497f0b6871e39b8817"
+  ],
+  "path": "/mnt/c/Users/lmani/Documents/Code/Searchers/KnifeBot/broadcast/BuySpy.s.sol/1/run-latest.json",
+  "returns": {},
+  "timestamp": 1671285647,
+  "chain": 1,
+  "multi": false,
+  "commit": "89e1714"
+}
