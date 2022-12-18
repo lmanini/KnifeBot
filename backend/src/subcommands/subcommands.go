@@ -148,28 +148,28 @@ func getSybilClusterBody(source *common.Address, spyFilterer *bindings.SpyNFTFil
 	dirty := false
 	sources := []common.Address{}
 	for spyToItr.Next() {
-		if spyToItr.Event.To.String() != constants.ZeroAddr && !cluster[spyToItr.Event.To] {
+		if spyToItr.Event.To.String() != constants.ZeroAddr && spyToItr.Event.To.String() != constants.DeadAddr  && !cluster[spyToItr.Event.To] {
 			cluster[spyToItr.Event.To] = true
 			dirty = true
 			sources = append(sources, spyToItr.Event.To)
 		}
 	}
 	for spyFromItr.Next() {
-		if spyFromItr.Event.From.String() != constants.ZeroAddr && !cluster[spyFromItr.Event.From] {
+		if spyFromItr.Event.From.String() != constants.ZeroAddr && spyFromItr.Event.From.String() != constants.DeadAddr && !cluster[spyFromItr.Event.From] {
 			cluster[spyFromItr.Event.From] = true
 			dirty = true
 			sources = append(sources, spyFromItr.Event.From)
 		}
 	}
 	for knifeToItr.Next() {
-		if knifeToItr.Event.To.String() != constants.ZeroAddr && !cluster[knifeToItr.Event.To] {
+		if knifeToItr.Event.To.String() != constants.ZeroAddr && knifeToItr.Event.To.String() != constants.DeadAddr && !cluster[knifeToItr.Event.To] {
 			cluster[knifeToItr.Event.To] = true
 			dirty = true
 			sources = append(sources, knifeToItr.Event.To)
 		}
 	}
 	for knifeFromItr.Next() {
-		if knifeFromItr.Event.From.String() != constants.ZeroAddr && !cluster[knifeFromItr.Event.From] {
+		if knifeFromItr.Event.From.String() != constants.ZeroAddr && knifeFromItr.Event.From.String() != constants.DeadAddr && !cluster[knifeFromItr.Event.From] {
 			cluster[knifeFromItr.Event.From] = true
 			dirty = true
 			sources = append(sources, knifeFromItr.Event.From)

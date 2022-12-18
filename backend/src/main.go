@@ -205,7 +205,7 @@ func exec(command subcommands.Command, v ...interface{}) error {
 		if err != nil {
 			return err
 		}
-		log.Printf("Address %s was found to have received/sent spies from/to:\n", addr)
+		log.Printf("Address %s was found to have dealt spies & knives with:\n", addr)
 		for _, a := range cluster {
 			if a.String() == addr.String() { continue }
 			log.Printf("\t%s\n", a.String())
@@ -216,7 +216,7 @@ func exec(command subcommands.Command, v ...interface{}) error {
 		if err != nil {
 			return err
 		}
-		log.Printf("Address %s has : \n\t%d spies \n\t%d knives \n\t %s moo", addr.Hex(), spyBal, knifeBal, getWithDecimals(mooBal, 18).String())
+		log.Printf("Address %s has : \n\t%d spies \n\t%d knives \n\t%s moo", addr.Hex(), spyBal, knifeBal, getWithDecimals(mooBal, 18).String())
 	}
 	return nil
 }
