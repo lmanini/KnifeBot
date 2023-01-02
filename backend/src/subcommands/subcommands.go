@@ -3,6 +3,7 @@ package subcommands
 import (
 	"KnifeBot/src/bindings"
 	"KnifeBot/src/constants"
+	"fmt"
 	"math/big"
 	"sort"
 
@@ -318,4 +319,14 @@ func getAllBalances(source *common.Address) (uint64, uint64, *big.Int, error) {
 		return 0, 0, nil, err
 	}
 	return spyBal, knifeBal, mooBal, nil
+}
+
+func getPlayerPoints(target *common.Address) (uint64, error) {
+	// return 32 * getSpyBal(target) + 2 * getKills(target)
+	return 0, fmt.Errorf("[getPlayerPoints]: Not implemented")
+}
+
+//@todo implement this based on KnifeGame.sol event logs
+func getKills(target *common.Address) (uint64, error) {
+	return 0, fmt.Errorf("[getKills]: Not implemented")
 }

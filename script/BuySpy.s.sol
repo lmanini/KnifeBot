@@ -24,14 +24,16 @@ contract BuySpyScript is Script {
     }
 
     function run() public {
-        // uint256 deployerPk1 = vm.envUint("PK1");
-        // vm.startBroadcast(deployerPk1);
-        // game.purchaseSpy{value: 0.1 ether}(addresses[0]);
-        // vm.stopBroadcast();
-
-        uint256 deployerPk2 = vm.envUint("PK2");
-        vm.startBroadcast(deployerPk2);
-        game.purchaseSpy{value: 0.1 ether}(addresses[1]);
+        uint256 deployerPk1 = vm.envUint("PK1");
+        vm.startBroadcast(deployerPk1);
+        uint256 id = game.mintSpyFromMoolah(game.spyPrice());
+        spies.safeTransferFrom(addresses[0], addresses[1], id);
         vm.stopBroadcast();
+
+        // uint256 deployerPk2 = vm.envUint("PK2");
+        // vm.startBroadcast(deployerPk2);
+        // uint256 id = game.mintSpyFromMoolah(game.spyPrice());
+        // spies.safeTransferFrom(addresses[1], addresses[0], id);
+        // vm.stopBroadcast();
     }
 }
