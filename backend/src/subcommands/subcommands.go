@@ -322,7 +322,7 @@ func getAllBalances(source *common.Address) (uint64, uint64, *big.Int, error) {
 }
 
 func getPlayerPoints(target *common.Address) (uint64, error) {
-	// return 32 * getSpyBal(target) + 2 * getKills(target)
+	// return 32 * getSpyBal(target) + 2 * getKills(target).
 	return 0, fmt.Errorf("[getPlayerPoints]: Not implemented")
 }
 
